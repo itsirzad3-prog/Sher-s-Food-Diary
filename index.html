@@ -1,0 +1,159 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Food Diary"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)"><title>Sher’s Food Diary</title>
+<style>
+:root{--bg:#fff;--cd:#fdeef3;--tx:#2b1a22;--mu:#7a5f6b;--ac:#d6336c;--bd:#f6cfdd;--on:#fff;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root{--bg:#000;--cd:#1a1014;--tx:#fdeef3;--mu:#c9a3b3;--ac:#ff6aa2;--bd:#3a2230;--on:#1a0610;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+h1{font-size:1.7rem;margin:.2em 0}h2{font-size:1.1rem;margin:18px 0 8px}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--bg);border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+nav button{flex:1;border:0;background:none;color:var(--mu);padding:6px 2px;font:inherit;font-size:.7rem;cursor:pointer;min-height:56px}
+nav button b{display:block;font-size:1.3rem;font-weight:400}nav button.on{color:var(--ac);font-weight:700}
+nav button.cam b{background:var(--ac);color:var(--on);width:46px;height:46px;border-radius:50%;margin:-20px auto 0;display:grid;place-items:center}
+main{max-width:980px;margin:auto;padding:16px 16px 110px}
+.card{background:var(--cd);border-radius:16px;padding:12px;margin:10px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}.grid .card,.grid>button{margin:0}
+.sc{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}.sc>*{flex:0 0 150px}
+.ph{aspect-ratio:1;border-radius:12px;display:grid;place-items:center;font-size:2.6rem;overflow:hidden;width:100%;border:0;padding:0}.ph img{width:100%;height:100%;object-fit:cover}
+.btn{background:var(--ac);color:var(--on);border:0;border-radius:999px;padding:10px 18px;font:inherit;font-weight:600;cursor:pointer;min-height:44px}.btn.g{background:none;color:var(--tx);border:1px solid var(--bd)}.btn:disabled{opacity:.5}
+.chip{display:inline-block;border:1px solid var(--bd);border-radius:999px;padding:5px 13px;margin:2px;font:inherit;font-size:.85rem;background:none;color:var(--tx);cursor:pointer}.chip.on{background:var(--ac);color:var(--on);border-color:var(--ac)}
+input,select,textarea{width:100%;font:inherit;color:var(--tx);background:var(--cd);border:1px solid var(--bd);border-radius:10px;padding:10px;margin:3px 0 8px;min-height:44px}
+label{font-size:.85rem;color:var(--mu)}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row>*{flex:1}
+.mu{color:var(--mu);font-size:.88rem}.err{color:#e5484d;font-size:.85rem}.star{color:#e8a317}
+.modal{position:fixed;inset:0;background:#0008;display:grid;place-items:center;padding:12px;z-index:9}.modal>div{background:var(--bg);border-radius:18px;padding:18px;max-width:520px;width:100%;max-height:92vh;overflow:auto}
+#toast{position:fixed;top:12px;left:50%;transform:translateX(-50%);background:var(--ac);color:var(--on);padding:8px 16px;border-radius:99px;z-index:20}
+:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+#wheel{transition:transform 4s cubic-bezier(.17,.67,.12,1);max-width:300px;width:100%;display:block;margin:auto}
+@media(prefers-reduced-motion:reduce){#wheel{transition:none}}
+@media(min-width:800px){nav{top:0;right:auto;width:160px;flex-direction:column;border-top:0;border-right:1px solid var(--bd);justify-content:flex-start;padding-top:20px}nav button{flex:0 0 auto;font-size:.95rem;text-align:left;padding:12px 18px}nav button b,nav button.cam b{display:inline-grid;margin:0 8px 0 0;width:auto;height:auto;font-size:1.1rem;background:none;color:inherit}main{margin-left:180px;padding-bottom:40px}}
+.box{font-size:7rem;line-height:1.1;background:none;border:0;cursor:pointer;padding:10px}@keyframes sh{0%,100%{transform:rotate(0)}20%{transform:rotate(-12deg) scale(1.1)}40%{transform:rotate(12deg) scale(1.1)}60%{transform:rotate(-8deg)}80%{transform:rotate(8deg)}}.shake{animation:sh .8s}@media(prefers-reduced-motion:reduce){.shake{animation:none}}
+nav button svg{width:26px;height:26px;display:block;margin:auto;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+nav button.cam svg{width:24px;height:24px}
+html{scroll-behavior:smooth}
+.card,.chip,.btn,.ph,nav button{transition:transform .15s ease,background-color .2s,opacity .2s,color .2s}
+.card:active,.btn:active,.ph:active{transform:scale(.97)}
+@media(hover:hover){.card:hover{transform:translateY(-2px)}}
+.an{animation:fu .3s ease both}@keyframes fu{from{opacity:0;transform:translateY(8px)}}
+.modal{animation:fd .18s ease}.modal>div{animation:up .25s cubic-bezier(.2,.8,.2,1)}@keyframes fd{from{opacity:0}}@keyframes up{from{transform:translateY(24px);opacity:0}}
+.sk{height:150px;border-radius:16px;background:var(--cd);animation:pl 1s ease-in-out infinite alternate}@keyframes pl{to{opacity:.45}}
+@media(min-width:800px){nav{width:76px}nav button{text-align:center;padding:14px 0}nav button b,nav button.cam b{display:block;margin:0 auto}nav button.cam b{background:var(--ac);color:var(--on);width:46px;height:46px;border-radius:50%;display:grid;place-items:center}main{margin-left:96px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+*{-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:#d6336c;z-index:30}
+.chip.va{background:color-mix(in srgb,var(--ac) 14%,transparent);color:var(--ac);border-color:transparent;font-weight:600}
+.fr{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}.fr>*{flex:0 0 auto;white-space:nowrap}
+.fp{background:var(--cd);border-radius:22px;padding:16px;margin:14px 0}
+.fp .chip{background:var(--bg);padding:7px 14px;margin:3px 4px 3px 0}.fp .chip.on{background:var(--ac)}
+.fl{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);margin:14px 0 6px}
+.seg{display:flex;background:var(--bg);border-radius:999px;padding:3px}.seg button{flex:1;border:0;background:none;color:var(--mu);padding:9px 4px;border-radius:999px;font:inherit;font-size:.85rem;cursor:pointer;transition:background-color .2s,color .2s}.seg button.on{background:var(--ac);color:var(--on);font-weight:600}
+.cnt{background:var(--bg);color:var(--ac);font-weight:700;font-size:.8rem;padding:3px 11px;border-radius:999px}
+</style></head><body>
+<nav id="nav"></nav><main id="app"></main><div id="ov"></div><input type="file" id="cam" accept="image/*" capture="environment" hidden onchange="gotPic(this)">
+<script>
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const CAT=['Cafe','Brunch','Dessert','Supper','Date Night','Budget Eats'];
+const U={A:{n:'Sher'},B:{n:'Partner'}};
+const SB='https://ptyvanbbyqcfhhghgkif.supabase.co',KEY='sb_publishable_zjewFgnpN47fgOmnGA2ISw_VbxkO2x8',PUB=SB+'/storage/v1/object/public/food-photos/';
+let C=[],F=[];
+async function api(p,o={}){const r=await fetch(SB+p,{...o,headers:{apikey:KEY,'Content-Type':'application/json',Prefer:'return=representation',...(o.headers||{})}});const t=await r.text();if(!r.ok){let m=t;try{m=JSON.parse(t).message||t}catch(e){}throw new Error(m||'Request failed ('+r.status+')')}return t?JSON.parse(t):[]}
+function shrink(f){return new Promise((ok,no)=>{const i=new Image();i.onload=()=>{const k=Math.min(1,1280/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*k;c.height=i.height*k;c.getContext('2d').drawImage(i,0,0,c.width,c.height);c.toBlob(b=>b?ok(b):no(new Error('Could not process image')),'image/jpeg',.82)};i.onerror=()=>no(new Error('Could not read image'));i.src=URL.createObjectURL(f)})}
+async function upload(f){const b=await shrink(f),p=crypto.randomUUID()+'.jpg';const r=await fetch(SB+'/storage/v1/object/food-photos/'+p,{method:'POST',headers:{apikey:KEY,'Content-Type':'image/jpeg'},body:b});if(!r.ok)throw new Error('Photo upload failed ('+r.status+'). Check the Supabase setup.');return p}
+async function load(quiet){if(!quiet){S.ld=true;S.er='';render()}
+ try{const[c,f,p]=await Promise.all([api('/rest/v1/cafes?select=*&order=id'),api('/rest/v1/foods?select=*&order=id.desc'),api('/rest/v1/people?select=*')]);
+  const sg=JSON.stringify([c,f,p]);if(quiet&&sg==S.sg)return;S.sg=sg;C=c.map(x=>({...x,e:x.e||'🍽️',h:x.h??340,price:x.price||'',cu:x.cu||'Other',cat:x.cat||'Cafe',descr:x.descr||'',ref:x.ref||'',map:x.map||''}));
+  F=f.map(x=>({id:x.id,cid:x.cid,name:x.name,by:x.by_user||'A',r:x.r,notes:x.notes||'',date:x.eaten||'',src:x.photo?PUB+x.photo:'',e:'🍽️'}));
+  p.forEach(x=>{if(U[x.id])U[x.id].n=x.name});S.er=''}catch(e){if(!quiet)S.er=e.message}S.ld=false;render()}
+function setWho(w){S.who=w;try{localStorage.setItem('sfd_who',w)}catch(e){}render()}
+function saveName(v){v=v.trim();if(!v)return;U[S.who].n=v;api('/rest/v1/people?id=eq.'+S.who,{method:'PATCH',body:JSON.stringify({name:v})}).then(()=>toast('Name saved')).catch(()=>toast('Could not save name'));render()}
+function placeForm(){modal(`<h2 style="margin-top:0">Add place</h2><label>Name *</label><input id="pn"><div class="row"><div><label>Cuisine</label><input id="pc" placeholder="Korean"></div><div><label>Category</label><select id="pg">${CAT.map(x=>`<option>${x}</option>`).join('')}</select></div></div><div class="row"><div><label>Price</label><select id="pp"><option value="">—</option>${['$','$$','$$$','$$$$'].map(x=>`<option>${x}</option>`).join('')}</select></div></div><label>Description</label><textarea id="pd" placeholder="What’s special about this place?"></textarea><label>Reference link (TikTok, Instagram…)</label><input id="pr" placeholder="https://…"><label>Map link</label><input id="pm" placeholder="https://…"><div id="pe" class="err"></div><div class="row"><button class="btn" id="sv" onclick="savePlace()">Save place</button><button class="btn g" onclick="closeM()">Cancel</button></div>`)}
+async function savePlace(){pe.textContent='';const n=pn.value.trim(),m=pm.value.trim(),rf=pr.value.trim();if(!n){pe.textContent='Please enter a place name.';return}
+ const ok=u=>!u||/^https?:\/\/\S+\.\S+/.test(u);if(!ok(rf)){pe.textContent='Reference link must start with https://';return}if(!ok(m)){pe.textContent='Map link must start with https://';return}
+ if(C.some(c=>c.name.toLowerCase()==n.toLowerCase())&&!confirm('A place with this name already exists. Save anyway?'))return;
+ sv.disabled=true;sv.textContent='Saving…';try{await api('/rest/v1/cafes',{method:'POST',body:JSON.stringify({name:n,cu:pc.value.trim()||'Other',cat:pg.value,price:pp.value,descr:pd.value.trim(),ref:rf,map:m,h:Math.floor(Math.random()*360)})});closeM();await load(true);toast('Place saved')}catch(e){pe.textContent=e.message;sv.disabled=false;sv.textContent='Save place'}}
+const S={ld:true,er:'',q:'',r:'eat',va:'',who:(()=>{try{return localStorage.getItem('sfd_who')||'A'}catch(e){return'A'}})(),cu:'',ct:'',sp:{cu:[],ct:[],res:null,rot:0,last:null}};
+const I=d=>`<svg viewBox="0 0 24 24" aria-hidden="true">${d}</svg>`;
+const NAV=[['eat',I('<path d="M7 3v8M4 3v5a3 3 0 0 0 6 0V3M7 11v10M17 3c-2 2-3 4.5-3 7 0 1.5 1 2.5 3 2.5V21"/>'),'Where to eat?'],['spin',I('<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M5 12v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8M7.5 8a2.5 2.5 0 1 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 1 1 0 5"/>'),'Spin the Wheel'],['add',I('<path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/>'),'Add food photo'],['foodcam',I('<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-9 9"/>'),'Foodcam'],['profile',I('<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/>'),'Profile']];
+const mean=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null;
+const cr=c=>mean(F.filter(f=>f.cid==c.id).map(f=>f.r).filter(Boolean));
+const st=n=>n==null?'Not rated':'★'.repeat(Math.round(n))+'☆'.repeat(5-Math.round(n))+' '+n.toFixed(1);
+const tile=f=>{const c=C.find(x=>x.id==f.cid);return f.src?`<img src="${f.src}" alt="${esc(f.name)}" loading="lazy" onerror="this.replaceWith('🍽️')">`:`<span style="font-size:2.6rem">${f.e||'🍽️'}</span>`};
+const bgc=h=>`background:hsl(${h} 60% 82%)`;
+function toast(m){const t=document.createElement('div');t.id='toast';t.setAttribute('role','status');t.textContent=m;document.body.append(t);setTimeout(()=>t.remove(),2200)}
+function go(r){if(r=='add'){startAdd();return}S.r=r;S.va='';S.an=1;try{location.hash=r}catch(e){}render();scrollTo(0,0)}
+addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(NAV.some(n=>n[0]==h)&&h!='add'){S.r=h;render()}});
+function render(){document.getElementById('nav').innerHTML=NAV.map(n=>`<button class="${S.r==n[0]?'on':''} ${n[0]=='add'?'cam':''}" aria-label="${n[2]}" title="${n[2]}" onclick="go('${n[0]}')"><b>${n[1]}</b></button>`).join('');document.getElementById('app').innerHTML=S.ld?'<div class="grid">'+'<div class="sk"></div>'.repeat(6)+'</div>':S.er?`<div class="card"><b>Couldn’t load data.</b><p class="err">${esc(S.er)}</p><p class="mu">Check your connection and that the Supabase setup SQL has been run.</p><button class="btn" onclick="load()">Try again</button></div>`:({eat,spin,foodcam,profile})[S.r]();if(S.an){const a=document.getElementById('app');a.classList.remove('an');void a.offsetWidth;a.classList.add('an');S.an=0}}
+const ccard=c=>`<button class="card" style="text-align:left;color:inherit;border:0;cursor:pointer;font:inherit" onclick="cafe(${c.id})"><div class="ph" style="${bgc(c.h)}">${thumb(c)}</div><b>${esc(c.name)}</b><div class="mu">${esc(c.cu)} · ${c.price}</div>${cr(c)==null?'<span class="mu">Not tried yet</span>':`<span class="star">${st(cr(c))}</span>`}</button>`;
+function hd(t,k){return`<div class="row" style="justify-content:space-between;margin:18px 0 8px"><h2 style="margin:0">${t}</h2><button class="chip va" style="flex:0;white-space:nowrap" onclick="S.va='${k}';render();scrollTo(0,0)">View all</button></div>`}
+function eat(){if(S.va)return viewall();const top=[...C].filter(c=>cr(c)!=null).sort((a,b)=>cr(b)-cr(a)).slice(0,4),fresh=C.filter(c=>cr(c)==null);
+ const cus=[...new Set(C.map(c=>c.cu))],l=C.filter(c=>(!S.cu||c.cu==S.cu)&&(!S.ct||c.cat==S.ct)),rec=[...F].sort((a,b)=>b.id-a.id).slice(0,8);
+ return`<div class="row" style="flex-wrap:nowrap;align-items:center;justify-content:space-between"><h1>What are we gonna eat today?</h1><button class="btn" style="flex:0 0 auto;white-space:nowrap;padding:8px 14px;min-height:40px" onclick="placeForm()">+ Add place</button></div>${C.length?'':'<div class="card">No places yet. Tap + Add place, or the camera button to add your first food photo.</div>'}
+ <input type="search" id="q" aria-label="Search places" placeholder="Search places, cuisines, dishes…" value="${esc(S.q)}" oninput="S.q=this.value;sr()">
+ <div class="mu">Cuisine</div><div class="fr">${cus.map(x=>`<button class="chip ${S.cu==x?'on':''}" onclick="S.cu=S.cu==${esc(JSON.stringify(x))}?'':${esc(JSON.stringify(x))};render()">${esc(x)}</button>`).join('')||'<span class="mu">Add a place to filter by cuisine</span>'}</div>
+ <div class="mu">Category</div><div class="fr">${CAT.map(x=>`<button class="chip ${S.ct==x?'on':''}" onclick="S.ct=S.ct=='${x}'?'':'${x}';render()">${x}</button>`).join('')}</div>
+ <div id="res">${results()}</div><div id="home" ${S.q.trim()||S.cu||S.ct?'hidden':''}>
+ ${hd('Recommended for you','rec')}${top.length?`<div class="sc">${top.map(ccard).join('')}</div>`:'<div class="card">Rate some food to get recommendations.</div>'}
+ ${fresh.length?`${hd('Not tried yet','new')}<div class="sc">${fresh.map(ccard).join('')}</div>`:''}
+ ${hd('Recent food photos','ph')}${rec.length?`<div class="sc">${rec.map(f=>`<button class="ph" style="${bgc(C.find(c=>c.id==f.cid)?.h||0)};cursor:pointer" onclick="food(${f.id})" aria-label="${esc(f.name)}">${tile(f)}</button>`).join('')}</div>`:'<div class="card">No photos yet. Tap the camera to add your first.</div>'}</div>
+ `}
+function results(){const q=S.q.trim().toLowerCase();if(!q&&!S.cu&&!S.ct)return'';
+ const l=C.filter(c=>(!S.cu||c.cu==S.cu)&&(!S.ct||c.cat==S.ct)&&(!q||[c.name,c.cu,c.cat,c.descr].join(' ').toLowerCase().includes(q)||F.some(f=>f.cid==c.id&&f.name.toLowerCase().includes(q))));
+ return`<p class="mu">${l.length} place${l.length==1?'':'s'} found <button class="chip" onclick="S.q=S.cu=S.ct='';render()">Clear</button></p>${l.length?`<div class="grid">${l.map(ccard).join('')}</div>`:'<div class="card">No places match. Try another word or clear a filter.</div>'}`}
+function sr(){document.getElementById('res').innerHTML=results();document.getElementById('home').hidden=!!(S.q.trim()||S.cu||S.ct)}
+function viewall(){const k=S.va,grp=key=>[...new Set(C.map(c=>c[key]))].map(g=>`<h2>${esc(g)}</h2><div class="grid">${C.filter(c=>c[key]==g).map(ccard).join('')}</div>`).join('');
+ const T={cu:['All cuisines',grp('cu')],ct:['All categories',grp('cat')],rec:['Recommended for you',`<div class="grid">${[...C].filter(c=>cr(c)!=null).sort((a,b)=>cr(b)-cr(a)).map(ccard).join('')}</div>`],new:['Not tried yet',`<div class="grid">${C.filter(c=>cr(c)==null).map(ccard).join('')}</div>`],ph:['All food photos',`<div class="grid">${[...F].sort((a,b)=>b.id-a.id).map(f=>`<button class="ph" style="${bgc(C.find(c=>c.id==f.cid)?.h||0)};cursor:pointer" onclick="food(${f.id})" aria-label="${esc(f.name)}">${tile(f)}</button>`).join('')}</div>`]}[k];
+ return`<button class="btn g" onclick="S.va='';render()">← Back</button><h1>${T[0]}</h1>${T[1]}`}
+function cafe(id){const c=C.find(x=>x.id==id),fs=F.filter(f=>f.cid==id);
+ modal(`<h2 style="margin-top:0">${c.e} ${esc(c.name)}</h2><p class="mu">${esc(c.cu)} · ${esc(c.cat)} · ${c.price}</p>${c.descr?`<p>${esc(c.descr)}</p>`:''}<span class="star">${st(cr(c))}</span>
+ <div class="grid" style="margin:10px 0">${fs.map(f=>`<button class="ph" style="${bgc(c.h)};cursor:pointer" onclick="food(${f.id})" aria-label="${esc(f.name)}">${tile(f)}</button>`).join('')||'<span class="mu">No food photos yet.</span>'}</div>
+ <div class="row">${c.map?`<a class="btn g" style="text-decoration:none;text-align:center" href="${esc(c.map)}" target="_blank" rel="noopener">Open map</a>`:''}${c.ref?`<a class="btn g" style="text-decoration:none;text-align:center" href="${esc(c.ref)}" target="_blank" rel="noopener">Reference</a>`:''}<button class="btn" onclick="closeM();startAdd(${id})">Add food here</button><button class="btn g" onclick="closeM()">Close</button></div>`)}
+const eligC=()=>C.filter(c=>(!S.sp.cu.length||S.sp.cu.includes(c.cu))&&(!S.sp.ct.length||S.sp.ct.includes(c.cat))&&(!S.sp.vs||(S.sp.vs=='new')==(cr(c)==null)));
+function spin(){const s=S.sp,n=eligC().length,cus=[...new Set(C.map(c=>c.cu))],any=s.cu.length||s.ct.length||s.vs;
+ const chips=(a,k)=>a.map(x=>`<button class="chip ${s[k].includes(x)?'on':''}" onclick="tg('${k}',${esc(JSON.stringify(x))})">${esc(x)}</button>`).join('');
+ return`<h1>Spin the Wheel</h1><p class="mu">Can’t decide? Open the mystery box.</p>
+ <div class="fp"><div class="row" style="flex-wrap:nowrap;justify-content:space-between;align-items:center"><b style="flex:1">Filters</b><span class="cnt" style="flex:0 0 auto">${n} place${n==1?'':'s'}</span>${any?`<button class="chip" style="flex:0 0 auto" onclick="S.sp.cu=[];S.sp.ct=[];S.sp.vs='';render()">Reset</button>`:''}</div>
+ <div class="fl">Cuisine</div><div>${cus.length?chips(cus,'cu'):'<span class="mu">Add places to filter by cuisine</span>'}</div>
+ <div class="fl">Category</div><div>${chips(CAT,'ct')}</div>
+ <div class="fl">Status</div><div class="seg">${[['','All'],['new','Not tried yet'],['been','Been there']].map(([v,t])=>`<button class="${(s.vs||'')==v?'on':''}" onclick="S.sp.vs='${v}';render()">${t}</button>`).join('')}</div>
+ <p class="mu" style="margin:12px 0 0">A place must match every group; within a group, any choice counts.</p></div>
+ ${n==0?'<div class="card">No saved places match. Try clearing a filter.</div>':`<p style="text-align:center"><button id="box" class="box" onclick="openBox()" aria-label="Open mystery box">🎁</button><br><span class="mu">${n==1?'Only one place matches, so the box has just one surprise. ':''}Tap the box to open it</span></p>`}`}
+function tg(k,v){const a=S.sp[k],i=a.indexOf(v);i<0?a.push(v):a.splice(i,1);render()}
+function openBox(){const l=eligC();if(!l.length)return;const b=document.getElementById('box');if(b)b.classList.add('shake');
+ const w=l[Math.floor(Math.random()*l.length)],show=()=>modal(`<div style="text-align:center"><div style="font-size:3rem">🎉</div><p class="mu" style="margin:0">Your mystery restaurant is…</p><div class="ph" style="${bgc(w.h)};max-width:150px;margin:10px auto">${thumb(w)}</div><h2 style="margin:0">${esc(w.name)}</h2><p class="mu">${esc(w.cu)} · ${esc(w.cat)} · ${w.price}<br><span class="star">${st(cr(w))}</span></p><div class="row"><button class="btn" onclick="closeM();cafe(${w.id})">View details</button>${w.map?`<a class="btn g" style="text-decoration:none;text-align:center" href="${esc(w.map)}" target="_blank" rel="noopener">Open maps</a>`:''}</div><div class="row" style="margin-top:8px"><button class="btn g" onclick="closeM();openBox()">Open another box</button><button class="btn g" onclick="closeM()">Close</button></div></div>`);
+ if(matchMedia('(prefers-reduced-motion:reduce)').matches)show();else setTimeout(()=>{if(b)b.classList.remove('shake');show()},900)}
+function foodcam(){const l=[...F].sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id);
+ return`<h1>Foodcam</h1>${l.length?`<div class="grid">${l.map(f=>`<button class="ph" style="${bgc(C.find(c=>c.id==f.cid)?.h||0)};cursor:pointer" onclick="food(${f.id})" aria-label="${esc(f.name)}">${tile(f)}</button>`).join('')}</div>`:'<div class="card">No food photos yet. Tap the camera button to add one.</div>'}`}
+function food(id){const f=F.find(x=>x.id==id),c=C.find(x=>x.id==f.cid);
+ modal(`<div class="ph" style="${bgc(c.h)};max-height:300px">${tile(f)}</div><h2>${esc(f.name)}</h2><p>${esc(c.name)} · ${esc(c.cu)}<br><span class="star">${st(f.r)}</span> by ${esc(U[f.by].n)} · ${f.date}</p>${f.notes?`<p>${esc(f.notes)}</p>`:''}
+ <div class="row"><button class="btn" onclick="closeM();foodForm(${id})">Edit</button><button class="btn g" onclick="delFood(${id})">Delete</button><button class="btn g" onclick="closeM()">Close</button></div>`)}
+async function delFood(id){if(!confirm('Delete this food photo? This cannot be undone.'))return;const f=F.find(x=>x.id==id);try{await api('/rest/v1/foods?id=eq.'+id,{method:'DELETE'});if(f&&f.src)fetch(f.src.replace('/object/public/','/object/'),{method:'DELETE',headers:{apikey:KEY}}).catch(()=>{});closeM();await load(true);toast('Photo deleted')}catch(e){toast('Could not delete: '+e.message)}}
+function foodForm(id,cid){const f=id?F.find(x=>x.id==id):{name:'',r:4,notes:'',cid:cid||C[0]?.id,date:new Date().toISOString().slice(0,10)};
+ modal(`<h2 style="margin-top:0">${id?'Edit food':'Add food photo'}</h2>
+ ${id?'':`<img src="${URL.createObjectURL(S.nf)}" alt="Your photo" style="width:100%;max-height:220px;object-fit:cover;border-radius:12px"><button class="chip" style="margin:6px 0" onclick="closeM();startAdd(${cid||0})">Retake photo</button>`}
+ <label>Food name *</label><input id="fnm" value="${esc(f.name)}" placeholder="e.g. Salmon don">
+ <label>Which cafe / restaurant?</label><select id="fc" onchange="nc.style.display=this.value=='new'?'block':'none'">${C.map(c=>`<option value="${c.id}" ${c.id==f.cid?'selected':''}>${esc(c.name)}</option>`).join('')}<option value="new">+ New place…</option></select>
+ <div id="nc" style="display:${C.length?'none':'block'}"><input id="ncn" placeholder="New place name"><div class="row"><input id="ncc" placeholder="Cuisine"><select id="ncg">${CAT.map(x=>`<option>${x}</option>`).join('')}</select></div></div>
+ <div class="row"><div><label>Rating</label><select id="fr">${[5,4,3,2,1].map(x=>`<option ${x==f.r?'selected':''}>${x}</option>`).join('')}<option value="0" ${f.r?'':'selected'}>No rating</option></select></div><div><label>Date</label><input type="date" id="fd" value="${f.date}"></div></div>
+ <label>Notes</label><textarea id="fno">${esc(f.notes)}</textarea><div id="er" class="err"></div>
+ <div class="row"><button class="btn" id="sv" onclick="saveFood(${id||0})">Save</button><button class="btn g" onclick="closeM()">Cancel</button></div>`)}
+function prev(i){const f=i.files[0];pv.innerHTML='';er.textContent='';if(!f)return;if(!/^image\/(jpeg|png|webp)$/.test(f.type)||f.size>8e6){er.textContent='Use a JPG, PNG or WebP under 8 MB.';i.value='';return}pv.innerHTML=`<img src="${URL.createObjectURL(f)}" alt="Preview" style="width:100%;max-height:200px;object-fit:cover;border-radius:12px">`}
+let pendCid=0;
+function startAdd(cid){pendCid=cid||0;cam.value='';cam.click()}
+function gotPic(i){const f=i.files[0];if(!f)return;if(!/^image\//.test(f.type)||f.size>25e6){toast('Please choose a photo under 25 MB');return}S.nf=f;foodForm(null,pendCid||undefined)}
+const thumb=c=>{const f=F.find(x=>x.cid==c.id&&x.src);return f?`<img src="${f.src}" alt="${esc(c.name)}" loading="lazy">`:c.e};
+function tgv(v){S.sp.vs=S.sp.vs==v?'':v;render()}
+async function saveFood(id){er.textContent='';const n=fnm.value.trim();
+ if(!id&&!S.nf){er.textContent='Please choose a photo.';return}if(!n){er.textContent='Please enter the food name.';return}
+ sv.disabled=true;sv.textContent='Saving…';
+ try{let cid=+fc.value;if(fc.value=='new'){const nn=ncn.value.trim();if(!nn)throw new Error('Enter the new place name.');const r=await api('/rest/v1/cafes',{method:'POST',body:JSON.stringify({name:nn,cu:ncc.value.trim()||'Other',cat:ncg.value,h:Math.floor(Math.random()*360)})});cid=r[0].id}
+ if(id)await api('/rest/v1/foods?id=eq.'+id,{method:'PATCH',body:JSON.stringify({name:n,cid,r:+fr.value||null,notes:fno.value,eaten:fd.value})});
+ else{const path=await upload(S.nf);await api('/rest/v1/foods',{method:'POST',body:JSON.stringify({cid,name:n,by_user:S.who,r:+fr.value||null,notes:fno.value,eaten:fd.value,photo:path})})}
+ S.nf=null;closeM();await load(true);toast(id?'Changes saved':'Photo added')}catch(e){er.textContent=e.message;sv.disabled=false;sv.textContent='Save'}}
+function profile(){const mine=F.filter(f=>f.by==S.who),a=mean(mine.map(f=>f.r).filter(Boolean));
+ return`<h1>Profile</h1><div class="card"><div class="row"><div style="flex:0 0 64px"><div class="ph" style="width:64px;border-radius:50%;font-size:1.8rem;background:var(--bd)">👤</div></div><div><label>Display name</label><input value="${esc(U[S.who].n)}" onchange="saveName(this.value)"></div></div>
+ <div class="row"><button class="chip ${S.who=='A'?'on':''}" onclick="setWho('A')">${esc(U.A.n)}</button><button class="chip ${S.who=='B'?'on':''}" onclick="setWho('B')">${esc(U.B.n)}</button></div><p class="mu">Choose who you are on this device. Your photos and ratings are filed under this name.</p>
+ <p><b>${mine.length}</b> photos · average rating <span class="star">${st(a)}</span></p></div>
+ <h2>My photos</h2>${mine.length?`<div class="grid">${mine.map(f=>`<button class="ph" style="${bgc(C.find(c=>c.id==f.cid)?.h||0)};cursor:pointer" onclick="food(${f.id})" aria-label="${esc(f.name)}">${tile(f)}</button>`).join('')}</div>`:'<div class="card">No photos yet.</div>'}
+ <h2>My ratings</h2>${mine.length?mine.map(f=>`<div class="card row" style="justify-content:space-between"><span><b>${esc(f.name)}</b><br><span class="mu">${esc(C.find(c=>c.id==f.cid).name)}</span></span><span class="star" style="flex:0;white-space:nowrap">${st(f.r)}</span></div>`).join(''):'<div class="card">Nothing rated yet.</div>'}`}
+function modal(h){document.getElementById('ov').innerHTML=`<div class="modal" role="dialog" aria-modal="true"><div>${h}</div></div>`}
+function closeM(){document.getElementById('ov').innerHTML=''}
+if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register('sw.js').catch(()=>{});
+load();setInterval(()=>{if(!document.getElementById('ov').innerHTML&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName))load(true)},30000);
+</script></body></html>
