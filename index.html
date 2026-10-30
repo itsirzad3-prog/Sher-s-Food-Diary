@@ -45,6 +45,59 @@ body::before{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area
 .fl{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);margin:14px 0 6px}
 .seg{display:flex;background:var(--bg);border-radius:999px;padding:3px}.seg button{flex:1;border:0;background:none;color:var(--mu);padding:9px 4px;border-radius:999px;font:inherit;font-size:.85rem;cursor:pointer;transition:background-color .2s,color .2s}.seg button.on{background:var(--ac);color:var(--on);font-weight:600}
 .cnt{background:var(--bg);color:var(--ac);font-weight:700;font-size:.8rem;padding:3px 11px;border-radius:999px}
+
+:root{--soft:#fff0f5;--cd:#fff0f5;--bd:#f3dbe5}
+@media(prefers-color-scheme:dark){:root{--soft:#1b1216;--cd:#1b1216;--bd:#2e2028}}
+h1,h2,.nm{font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;font-weight:700;letter-spacing:-.01em}
+h1{font-size:1.65rem;line-height:1.15;margin:2px 0}
+main{padding-bottom:130px}
+nav{left:14px;right:14px;bottom:calc(12px + env(safe-area-inset-bottom,0px));max-width:460px;margin:auto;border:1px solid var(--bd);border-radius:28px;padding:6px 8px;background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 10px 30px #0002}
+nav button{position:relative;min-height:48px}
+nav button.on::after{content:"";position:absolute;bottom:3px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--ac)}
+nav button.cam{flex:0 0 60px}nav button.cam.on::after{display:none}nav button.cam b{width:48px;height:48px;margin:0 auto}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin:8px 0 6px}
+.eyebrow{margin:0;color:var(--ac);font-weight:600;font-size:.85rem}
+.fab{flex:0 0 44px;width:44px;height:44px;border-radius:50%;border:0;background:var(--ac);color:var(--on);display:grid;place-items:center;cursor:pointer;margin-top:4px}
+.fab svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round}
+.sb{display:flex;align-items:center;gap:8px;background:var(--soft);border-radius:16px;padding:0 14px;margin:16px 0 10px}
+.sb svg{width:20px;height:20px;flex:0 0 20px;fill:none;stroke:var(--mu);stroke-width:2;stroke-linecap:round}
+.sb input{border:0;background:none;margin:0;padding:0;min-height:48px;-webkit-appearance:none}.sb input:focus-visible{outline:0}.sb:focus-within{outline:2px solid var(--ac)}
+.chip{border:0;background:var(--soft);padding:8px 15px;font-size:.85rem;margin:0}.chip.on{background:var(--ac);color:var(--on)}
+.fr{display:flex;gap:8px;overflow-x:auto;margin:0 -16px 4px;padding:0 16px 6px;scrollbar-width:none}.fr::-webkit-scrollbar{display:none}.fr>*{flex:0 0 auto;white-space:nowrap}
+.fr.wrap{flex-wrap:wrap;overflow:visible;margin:0;padding:0}
+.dv{width:1px;background:var(--bd);margin:4px 2px}
+.sh{display:flex;justify-content:space-between;align-items:baseline;margin:26px 0 12px}.sh h2{margin:0;font-size:1.2rem}
+.lnk{background:none;border:0;color:var(--ac);font:inherit;font-weight:600;font-size:.88rem;cursor:pointer;padding:6px 0}
+.sc{margin:0 -16px;padding:0 16px 4px;scroll-padding:0 16px;scrollbar-width:none;scroll-snap-type:x proximity}.sc::-webkit-scrollbar{display:none}
+.sc>*{flex:0 0 158px;scroll-snap-align:start}.sc.sm>*{flex:0 0 108px}.sc.sm>.ph{aspect-ratio:1;border-radius:18px;border:0;padding:0}
+.grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:18px 12px}
+.pc{border:0;background:none;padding:0;text-align:left;color:var(--tx);font:inherit;cursor:pointer;display:block;min-width:0}
+.pc .ph{aspect-ratio:4/5;border-radius:20px;position:relative;margin-bottom:9px}
+.pc b{display:block;font-size:.95rem;line-height:1.25}.pc>span{color:var(--mu);font-size:.8rem}
+.ph{position:relative}
+.pill{position:absolute;top:9px;left:9px;background:color-mix(in srgb,var(--bg) 88%,transparent);color:var(--tx);font:700 .72rem system-ui;padding:3px 9px;border-radius:99px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.mosaic{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}.mosaic>.ph{aspect-ratio:1;border-radius:8px;width:100%;border:0;padding:0}
+@media(min-width:800px){.mosaic{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}}
+.modal{place-items:end center;padding:0}.modal>div{border-radius:28px 28px 0 0;max-width:520px;padding:12px 18px calc(22px + env(safe-area-inset-bottom,0px));max-height:90vh}
+@media(min-width:800px){.modal{place-items:center;padding:12px}.modal>div{border-radius:28px}}
+.grab{width:40px;height:4px;border-radius:4px;background:var(--bd);margin:0 auto 14px}
+.hero{aspect-ratio:16/10;border-radius:20px;margin-bottom:12px;width:100%}.hero.sq{aspect-ratio:1}
+.nm{margin:.1em 0;font-size:1.4rem}
+.acts{display:flex;gap:8px;margin-top:16px}.acts .btn{flex:1;text-align:center;text-decoration:none;display:grid;place-items:center}.acts .btn{white-space:nowrap;padding:0 14px;min-height:46px;font-size:.9rem}.acts .btn:first-child{flex:1.4}
+.fl{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);margin:18px 0 8px}
+.seg{background:var(--soft)}
+.hero-box{text-align:center;margin:10px 0 0}
+.hero-box .box{font-size:5.4rem;width:170px;height:170px;border-radius:50%;border:0;cursor:pointer;background:radial-gradient(circle,color-mix(in srgb,var(--ac) 24%,transparent),transparent 68%);padding:0}
+.btn.big{padding:13px 28px}
+.pf{display:flex;align-items:center;gap:14px;margin:10px 0}
+.av{width:64px;height:64px;flex:0 0 64px;border-radius:50%;background:var(--ac);color:var(--on);display:grid;place-items:center;font:700 1.6rem Georgia,serif}
+.nmi{font:700 1.3rem Georgia,serif;border:0;background:none;margin:0;padding:0;min-height:0}
+.stats3{display:grid;grid-template-columns:repeat(3,1fr);background:var(--soft);border-radius:20px;padding:16px 0;text-align:center}
+.stats3 b{display:block;font-size:1.35rem;color:var(--ac)}.stats3 span{font-size:.78rem;color:var(--mu)}
+.rr{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--bd)}
+.th{width:48px;height:48px;flex:0 0 48px;border-radius:12px;font-size:1.3rem;aspect-ratio:auto}
+.card{border-radius:20px}
+@media(min-width:800px){nav{left:16px;top:16px;bottom:16px;right:auto;width:68px;max-width:none;margin:0;flex-direction:column;border-radius:26px;padding:12px 6px}nav button.on::after{display:none}main{margin-left:100px}}
 </style></head><body>
 <nav id="nav"></nav><main id="app"></main><div id="ov"></div><input type="file" id="cam" accept="image/*" capture="environment" hidden onchange="gotPic(this)">
 <script>
@@ -80,19 +133,19 @@ function toast(m){const t=document.createElement('div');t.id='toast';t.setAttrib
 function go(r){if(r=='add'){startAdd();return}S.r=r;S.va='';S.an=1;try{location.hash=r}catch(e){}render();scrollTo(0,0)}
 addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(NAV.some(n=>n[0]==h)&&h!='add'){S.r=h;render()}});
 function render(){document.getElementById('nav').innerHTML=NAV.map(n=>`<button class="${S.r==n[0]?'on':''} ${n[0]=='add'?'cam':''}" aria-label="${n[2]}" title="${n[2]}" onclick="go('${n[0]}')"><b>${n[1]}</b></button>`).join('');document.getElementById('app').innerHTML=S.ld?'<div class="grid">'+'<div class="sk"></div>'.repeat(6)+'</div>':S.er?`<div class="card"><b>Couldn’t load data.</b><p class="err">${esc(S.er)}</p><p class="mu">Check your connection and that the Supabase setup SQL has been run.</p><button class="btn" onclick="load()">Try again</button></div>`:({eat,spin,foodcam,profile})[S.r]();if(S.an){const a=document.getElementById('app');a.classList.remove('an');void a.offsetWidth;a.classList.add('an');S.an=0}}
-const ccard=c=>`<button class="card" style="text-align:left;color:inherit;border:0;cursor:pointer;font:inherit" onclick="cafe(${c.id})"><div class="ph" style="${bgc(c.h)}">${thumb(c)}</div><b>${esc(c.name)}</b><div class="mu">${esc(c.cu)} · ${c.price}</div>${cr(c)==null?'<span class="mu">Not tried yet</span>':`<span class="star">${st(cr(c))}</span>`}</button>`;
-function hd(t,k){return`<div class="row" style="justify-content:space-between;margin:18px 0 8px"><h2 style="margin:0">${t}</h2><button class="chip va" style="flex:0;white-space:nowrap" onclick="S.va='${k}';render();scrollTo(0,0)">View all</button></div>`}
-function eat(){if(S.va)return viewall();const top=[...C].filter(c=>cr(c)!=null).sort((a,b)=>cr(b)-cr(a)).slice(0,4),fresh=C.filter(c=>cr(c)==null);
- const cus=[...new Set(C.map(c=>c.cu))],l=C.filter(c=>(!S.cu||c.cu==S.cu)&&(!S.ct||c.cat==S.ct)),rec=[...F].sort((a,b)=>b.id-a.id).slice(0,8);
- return`<div class="row" style="flex-wrap:nowrap;align-items:center;justify-content:space-between"><h1>What are we gonna eat today?</h1><button class="btn" style="flex:0 0 auto;white-space:nowrap;padding:8px 14px;min-height:40px" onclick="placeForm()">+ Add place</button></div>${C.length?'':'<div class="card">No places yet. Tap + Add place, or the camera button to add your first food photo.</div>'}
- <input type="search" id="q" aria-label="Search places" placeholder="Search places, cuisines, dishes…" value="${esc(S.q)}" oninput="S.q=this.value;sr()">
- <div class="mu">Cuisine</div><div class="fr">${cus.map(x=>`<button class="chip ${S.cu==x?'on':''}" onclick="S.cu=S.cu==${esc(JSON.stringify(x))}?'':${esc(JSON.stringify(x))};render()">${esc(x)}</button>`).join('')||'<span class="mu">Add a place to filter by cuisine</span>'}</div>
- <div class="mu">Category</div><div class="fr">${CAT.map(x=>`<button class="chip ${S.ct==x?'on':''}" onclick="S.ct=S.ct=='${x}'?'':'${x}';render()">${x}</button>`).join('')}</div>
- <div id="res">${results()}</div><div id="home" ${S.q.trim()||S.cu||S.ct?'hidden':''}>
- ${hd('Recommended for you','rec')}${top.length?`<div class="sc">${top.map(ccard).join('')}</div>`:'<div class="card">Rate some food to get recommendations.</div>'}
+const rb=c=>cr(c)==null?'<span class="pill">Not tried</span>':`<span class="pill">★ ${cr(c).toFixed(1)}</span>`;
+const ccard=c=>`<button class="pc" onclick="cafe(${c.id})"><div class="ph" style="${bgc(c.h)}">${thumb(c)}${rb(c)}</div><b>${esc(c.name)}</b><span>${esc(c.cu)}${c.price?' · '+c.price:''}</span></button>`;
+function hd(t,k){return`<div class="sh"><h2>${t}</h2><button class="lnk" onclick="S.va='${k}';render();scrollTo(0,0)">View all ›</button></div>`}
+function eat(){if(S.va)return viewall();const top=[...C].filter(c=>cr(c)!=null).sort((a,b)=>cr(b)-cr(a)).slice(0,6),fresh=C.filter(c=>cr(c)==null),cus=[...new Set(C.map(c=>c.cu))],rec=[...F].sort((a,b)=>b.id-a.id).slice(0,9),act=S.q.trim()||S.cu||S.ct;
+ const q=x=>esc(JSON.stringify(x));
+ return`<header class="top"><div><p class="eyebrow">Hi, ${esc(U[S.who].n)}</p><h1>What are we gonna eat today?</h1></div><button class="fab" onclick="placeForm()" aria-label="Add place">${I('<path d="M12 5v14M5 12h14"/>')}</button></header>
+ ${C.length?'':'<div class="card">No places yet. Tap + or the camera button to add your first.</div>'}
+ <label class="sb">${I('<circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/>')}<input type="search" id="q" aria-label="Search places" placeholder="Search places, cuisines, dishes" value="${esc(S.q)}" oninput="S.q=this.value;sr()"></label>
+ <div class="fr">${cus.map(x=>`<button class="chip ${S.cu==x?'on':''}" onclick="S.cu=S.cu==${q(x)}?'':${q(x)};render()">${esc(x)}</button>`).join('')}${cus.length?'<i class="dv"></i>':''}${CAT.map(x=>`<button class="chip ${S.ct==x?'on':''}" onclick="S.ct=S.ct=='${x}'?'':'${x}';render()">${x}</button>`).join('')}</div>
+ <div id="res">${results()}</div><div id="home" ${act?'hidden':''}>
+ ${hd('Recommended for you','rec')}${top.length?`<div class="sc">${top.map(ccard).join('')}</div>`:'<div class="card">Rate a food photo to get recommendations.</div>'}
  ${fresh.length?`${hd('Not tried yet','new')}<div class="sc">${fresh.map(ccard).join('')}</div>`:''}
- ${hd('Recent food photos','ph')}${rec.length?`<div class="sc">${rec.map(f=>`<button class="ph" style="${bgc(C.find(c=>c.id==f.cid)?.h||0)};cursor:pointer" onclick="food(${f.id})" aria-label="${esc(f.name)}">${tile(f)}</button>`).join('')}</div>`:'<div class="card">No photos yet. Tap the camera to add your first.</div>'}</div>
- `}
+ ${hd('Recent food photos','ph')}${rec.length?`<div class="sc sm">${rec.map(f=>`<button class="ph" style="${bgc(C.find(c=>c.id==f.cid)?.h||0)};cursor:pointer" onclick="food(${f.id})" aria-label="${esc(f.name)}">${tile(f)}</button>`).join('')}</div>`:'<div class="card">No photos yet. Tap the camera to add your first.</div>'}</div>`}
 function results(){const q=S.q.trim().toLowerCase();if(!q&&!S.cu&&!S.ct)return'';
  const l=C.filter(c=>(!S.cu||c.cu==S.cu)&&(!S.ct||c.cat==S.ct)&&(!q||[c.name,c.cu,c.cat,c.descr].join(' ').toLowerCase().includes(q)||F.some(f=>f.cid==c.id&&f.name.toLowerCase().includes(q))));
  return`<p class="mu">${l.length} place${l.length==1?'':'s'} found <button class="chip" onclick="S.q=S.cu=S.ct='';render()">Clear</button></p>${l.length?`<div class="grid">${l.map(ccard).join('')}</div>`:'<div class="card">No places match. Try another word or clear a filter.</div>'}`}
@@ -101,27 +154,27 @@ function viewall(){const k=S.va,grp=key=>[...new Set(C.map(c=>c[key]))].map(g=>`
  const T={cu:['All cuisines',grp('cu')],ct:['All categories',grp('cat')],rec:['Recommended for you',`<div class="grid">${[...C].filter(c=>cr(c)!=null).sort((a,b)=>cr(b)-cr(a)).map(ccard).join('')}</div>`],new:['Not tried yet',`<div class="grid">${C.filter(c=>cr(c)==null).map(ccard).join('')}</div>`],ph:['All food photos',`<div class="grid">${[...F].sort((a,b)=>b.id-a.id).map(f=>`<button class="ph" style="${bgc(C.find(c=>c.id==f.cid)?.h||0)};cursor:pointer" onclick="food(${f.id})" aria-label="${esc(f.name)}">${tile(f)}</button>`).join('')}</div>`]}[k];
  return`<button class="btn g" onclick="S.va='';render()">← Back</button><h1>${T[0]}</h1>${T[1]}`}
 function cafe(id){const c=C.find(x=>x.id==id),fs=F.filter(f=>f.cid==id);
- modal(`<h2 style="margin-top:0">${c.e} ${esc(c.name)}</h2><p class="mu">${esc(c.cu)} · ${esc(c.cat)} · ${c.price}</p>${c.descr?`<p>${esc(c.descr)}</p>`:''}<span class="star">${st(cr(c))}</span>
- <div class="grid" style="margin:10px 0">${fs.map(f=>`<button class="ph" style="${bgc(c.h)};cursor:pointer" onclick="food(${f.id})" aria-label="${esc(f.name)}">${tile(f)}</button>`).join('')||'<span class="mu">No food photos yet.</span>'}</div>
- <div class="row">${c.map?`<a class="btn g" style="text-decoration:none;text-align:center" href="${esc(c.map)}" target="_blank" rel="noopener">Open map</a>`:''}${c.ref?`<a class="btn g" style="text-decoration:none;text-align:center" href="${esc(c.ref)}" target="_blank" rel="noopener">Reference</a>`:''}<button class="btn" onclick="closeM();startAdd(${id})">Add food here</button><button class="btn g" onclick="closeM()">Close</button></div>`)}
+ modal(`<div class="grab"></div><div class="ph hero" style="${bgc(c.h)}">${thumb(c)}${rb(c)}</div><h2 class="nm">${esc(c.name)}</h2><p class="mu" style="margin:0 0 8px">${esc(c.cu)} · ${esc(c.cat)}${c.price?' · '+c.price:''}</p>${c.descr?`<p>${esc(c.descr)}</p>`:''}
+ ${fs.length?`<div class="fl">Food photos</div><div class="mosaic">${fs.map(f=>`<button class="ph" style="${bgc(c.h)};cursor:pointer" onclick="food(${f.id})" aria-label="${esc(f.name)}">${tile(f)}</button>`).join('')}</div>`:'<p class="mu">No food photos yet.</p>'}
+ <div class="acts"><button class="btn" onclick="closeM();startAdd(${id})">Add food here</button>${c.map?`<a class="btn g" href="${esc(c.map)}" target="_blank" rel="noopener">Map</a>`:''}${c.ref?`<a class="btn g" href="${esc(c.ref)}" target="_blank" rel="noopener">Reference</a>`:''}</div>`)}
 const eligC=()=>C.filter(c=>(!S.sp.cu.length||S.sp.cu.includes(c.cu))&&(!S.sp.ct.length||S.sp.ct.includes(c.cat))&&(!S.sp.vs||(S.sp.vs=='new')==(cr(c)==null)));
 function spin(){const s=S.sp,n=eligC().length,cus=[...new Set(C.map(c=>c.cu))],any=s.cu.length||s.ct.length||s.vs;
  const chips=(a,k)=>a.map(x=>`<button class="chip ${s[k].includes(x)?'on':''}" onclick="tg('${k}',${esc(JSON.stringify(x))})">${esc(x)}</button>`).join('');
- return`<h1>Spin the Wheel</h1><p class="mu">Can’t decide? Open the mystery box.</p>
- <div class="fp"><div class="row" style="flex-wrap:nowrap;justify-content:space-between;align-items:center"><b style="flex:1">Filters</b><span class="cnt" style="flex:0 0 auto">${n} place${n==1?'':'s'}</span>${any?`<button class="chip" style="flex:0 0 auto" onclick="S.sp.cu=[];S.sp.ct=[];S.sp.vs='';render()">Reset</button>`:''}</div>
- <div class="fl">Cuisine</div><div>${cus.length?chips(cus,'cu'):'<span class="mu">Add places to filter by cuisine</span>'}</div>
- <div class="fl">Category</div><div>${chips(CAT,'ct')}</div>
+ return`<header class="top"><h1>Spin the Wheel</h1></header>
+ <div class="hero-box"><button id="box" class="box" onclick="openBox()" aria-label="Open mystery box">🎁</button><p class="mu" style="margin:0 0 12px">${n==0?'No saved places match these filters':n==1?'Just 1 place in the mix':n+' places in the mix'}</p><button class="btn big" onclick="openBox()" ${n?'':'disabled'}>Open the mystery box</button></div>
+ <div class="sh" style="margin-top:22px"><h2>Filters</h2>${any?`<button class="lnk" onclick="S.sp.cu=[];S.sp.ct=[];S.sp.vs='';render()">Reset</button>`:''}</div>
+ <div class="fl">Cuisine</div><div class="fr wrap">${cus.length?chips(cus,'cu'):'<span class="mu">Add places to filter by cuisine</span>'}</div>
+ <div class="fl">Category</div><div class="fr wrap">${chips(CAT,'ct')}</div>
  <div class="fl">Status</div><div class="seg">${[['','All'],['new','Not tried yet'],['been','Been there']].map(([v,t])=>`<button class="${(s.vs||'')==v?'on':''}" onclick="S.sp.vs='${v}';render()">${t}</button>`).join('')}</div>
- <p class="mu" style="margin:12px 0 0">A place must match every group; within a group, any choice counts.</p></div>
- ${n==0?'<div class="card">No saved places match. Try clearing a filter.</div>':`<p style="text-align:center"><button id="box" class="box" onclick="openBox()" aria-label="Open mystery box">🎁</button><br><span class="mu">${n==1?'Only one place matches, so the box has just one surprise. ':''}Tap the box to open it</span></p>`}`}
+ <p class="mu" style="margin-top:12px">A place must match every group; within a group, any choice counts.</p>`}
 function tg(k,v){const a=S.sp[k],i=a.indexOf(v);i<0?a.push(v):a.splice(i,1);render()}
 function openBox(){const l=eligC();if(!l.length)return;const b=document.getElementById('box');if(b)b.classList.add('shake');
  const w=l[Math.floor(Math.random()*l.length)],show=()=>modal(`<div style="text-align:center"><div style="font-size:3rem">🎉</div><p class="mu" style="margin:0">Your mystery restaurant is…</p><div class="ph" style="${bgc(w.h)};max-width:150px;margin:10px auto">${thumb(w)}</div><h2 style="margin:0">${esc(w.name)}</h2><p class="mu">${esc(w.cu)} · ${esc(w.cat)} · ${w.price}<br><span class="star">${st(cr(w))}</span></p><div class="row"><button class="btn" onclick="closeM();cafe(${w.id})">View details</button>${w.map?`<a class="btn g" style="text-decoration:none;text-align:center" href="${esc(w.map)}" target="_blank" rel="noopener">Open maps</a>`:''}</div><div class="row" style="margin-top:8px"><button class="btn g" onclick="closeM();openBox()">Open another box</button><button class="btn g" onclick="closeM()">Close</button></div></div>`);
  if(matchMedia('(prefers-reduced-motion:reduce)').matches)show();else setTimeout(()=>{if(b)b.classList.remove('shake');show()},900)}
 function foodcam(){const l=[...F].sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id);
- return`<h1>Foodcam</h1>${l.length?`<div class="grid">${l.map(f=>`<button class="ph" style="${bgc(C.find(c=>c.id==f.cid)?.h||0)};cursor:pointer" onclick="food(${f.id})" aria-label="${esc(f.name)}">${tile(f)}</button>`).join('')}</div>`:'<div class="card">No food photos yet. Tap the camera button to add one.</div>'}`}
+ return`<header class="top"><div><h1>Foodcam</h1><p class="mu" style="margin:0">${l.length} photo${l.length==1?'':'s'}</p></div></header>${l.length?`<div class="mosaic">${l.map(f=>`<button class="ph" style="${bgc(C.find(c=>c.id==f.cid)?.h||0)};cursor:pointer" onclick="food(${f.id})" aria-label="${esc(f.name)}">${tile(f)}</button>`).join('')}</div>`:'<div class="card">No food photos yet. Tap the camera button to add one.</div>'}`}
 function food(id){const f=F.find(x=>x.id==id),c=C.find(x=>x.id==f.cid);
- modal(`<div class="ph" style="${bgc(c.h)};max-height:300px">${tile(f)}</div><h2>${esc(f.name)}</h2><p>${esc(c.name)} · ${esc(c.cu)}<br><span class="star">${st(f.r)}</span> by ${esc(U[f.by].n)} · ${f.date}</p>${f.notes?`<p>${esc(f.notes)}</p>`:''}
+ modal(`<div class="grab"></div><div class="ph hero sq" style="${bgc(c.h)}">${tile(f)}</div><h2 class="nm">${esc(f.name)}</h2><p>${esc(c.name)} · ${esc(c.cu)}<br><span class="star">${st(f.r)}</span> by ${esc(U[f.by].n)} · ${f.date}</p>${f.notes?`<p>${esc(f.notes)}</p>`:''}
  <div class="row"><button class="btn" onclick="closeM();foodForm(${id})">Edit</button><button class="btn g" onclick="delFood(${id})">Delete</button><button class="btn g" onclick="closeM()">Close</button></div>`)}
 async function delFood(id){if(!confirm('Delete this food photo? This cannot be undone.'))return;const f=F.find(x=>x.id==id);try{await api('/rest/v1/foods?id=eq.'+id,{method:'DELETE'});if(f&&f.src)fetch(f.src.replace('/object/public/','/object/'),{method:'DELETE',headers:{apikey:KEY}}).catch(()=>{});closeM();await load(true);toast('Photo deleted')}catch(e){toast('Could not delete: '+e.message)}}
 function foodForm(id,cid){const f=id?F.find(x=>x.id==id):{name:'',r:4,notes:'',cid:cid||C[0]?.id,date:new Date().toISOString().slice(0,10)};
@@ -146,13 +199,14 @@ async function saveFood(id){er.textContent='';const n=fnm.value.trim();
  if(id)await api('/rest/v1/foods?id=eq.'+id,{method:'PATCH',body:JSON.stringify({name:n,cid,r:+fr.value||null,notes:fno.value,eaten:fd.value})});
  else{const path=await upload(S.nf);await api('/rest/v1/foods',{method:'POST',body:JSON.stringify({cid,name:n,by_user:S.who,r:+fr.value||null,notes:fno.value,eaten:fd.value,photo:path})})}
  S.nf=null;closeM();await load(true);toast(id?'Changes saved':'Photo added')}catch(e){er.textContent=e.message;sv.disabled=false;sv.textContent='Save'}}
-function profile(){const mine=F.filter(f=>f.by==S.who),a=mean(mine.map(f=>f.r).filter(Boolean));
- return`<h1>Profile</h1><div class="card"><div class="row"><div style="flex:0 0 64px"><div class="ph" style="width:64px;border-radius:50%;font-size:1.8rem;background:var(--bd)">👤</div></div><div><label>Display name</label><input value="${esc(U[S.who].n)}" onchange="saveName(this.value)"></div></div>
- <div class="row"><button class="chip ${S.who=='A'?'on':''}" onclick="setWho('A')">${esc(U.A.n)}</button><button class="chip ${S.who=='B'?'on':''}" onclick="setWho('B')">${esc(U.B.n)}</button></div><p class="mu">Choose who you are on this device. Your photos and ratings are filed under this name.</p>
- <p><b>${mine.length}</b> photos · average rating <span class="star">${st(a)}</span></p></div>
- <h2>My photos</h2>${mine.length?`<div class="grid">${mine.map(f=>`<button class="ph" style="${bgc(C.find(c=>c.id==f.cid)?.h||0)};cursor:pointer" onclick="food(${f.id})" aria-label="${esc(f.name)}">${tile(f)}</button>`).join('')}</div>`:'<div class="card">No photos yet.</div>'}
- <h2>My ratings</h2>${mine.length?mine.map(f=>`<div class="card row" style="justify-content:space-between"><span><b>${esc(f.name)}</b><br><span class="mu">${esc(C.find(c=>c.id==f.cid).name)}</span></span><span class="star" style="flex:0;white-space:nowrap">${st(f.r)}</span></div>`).join(''):'<div class="card">Nothing rated yet.</div>'}`}
-function modal(h){document.getElementById('ov').innerHTML=`<div class="modal" role="dialog" aria-modal="true"><div>${h}</div></div>`}
+function profile(){const mine=F.filter(f=>f.by==S.who),a=mean(mine.map(f=>f.r).filter(Boolean)),np=new Set(mine.map(f=>f.cid)).size,th=f=>`<button class="ph" style="${bgc(C.find(c=>c.id==f.cid)?.h||0)};cursor:pointer" onclick="food(${f.id})" aria-label="${esc(f.name)}">${tile(f)}</button>`;
+ return`<header class="top"><h1>Profile</h1></header>
+ <div class="pf"><div class="av">${esc(U[S.who].n.slice(0,1).toUpperCase())}</div><div><input class="nmi" value="${esc(U[S.who].n)}" aria-label="Display name" onchange="saveName(this.value)"><p class="mu" style="margin:0">Tap the name to edit</p></div></div>
+ <div class="seg" style="margin:14px 0">${['A','B'].map(k=>`<button class="${S.who==k?'on':''}" onclick="setWho('${k}')">${esc(U[k].n)}</button>`).join('')}</div>
+ <div class="stats3"><div><b>${mine.length}</b><span>Photos</span></div><div><b>${a==null?'–':a.toFixed(1)}</b><span>Avg rating</span></div><div><b>${np}</b><span>Places</span></div></div>
+ <div class="sh"><h2>My photos</h2></div>${mine.length?`<div class="mosaic">${mine.map(th).join('')}</div>`:'<div class="card">No photos yet.</div>'}
+ <div class="sh"><h2>My ratings</h2></div>${mine.length?mine.map(f=>`<div class="rr"><div class="ph th" style="${bgc(C.find(c=>c.id==f.cid)?.h||0)}">${tile(f)}</div><div style="flex:1;min-width:0"><b>${esc(f.name)}</b><br><span class="mu">${esc(C.find(c=>c.id==f.cid)?.name||'')}</span></div><span class="star">${f.r?'★ '+f.r:'–'}</span></div>`).join(''):'<div class="card">Nothing rated yet.</div>'}`}
+function modal(h){document.getElementById('ov').innerHTML=`<div class="modal" role="dialog" aria-modal="true" onclick="if(event.target==this)closeM()"><div>${h}</div></div>`}
 function closeM(){document.getElementById('ov').innerHTML=''}
 if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register('sw.js').catch(()=>{});
 load();setInterval(()=>{if(!document.getElementById('ov').innerHTML&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName))load(true)},30000);
